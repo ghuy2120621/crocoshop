@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Croco closet</title>
+    <!-- Bắt lỗi toàn cục -->
+    <script src="js/customer/error-handler.js?v=2.0"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 1. Firebase Core & Realtime Database SDK (BẮT BUỘC TRƯỚC) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <!-- Cấu hình + khởi tạo Firebase (bắt buộc sau SDK) -->
+    <script src="js/shared/config.js?v=2.0"></script>
+    <script src="js/shared/firebase-init.js?v=2.0"></script>
+
+    <!-- CSS chia theo thành phần (thứ tự quan trọng, giữ nguyên như bản gốc) -->
+    <link rel="stylesheet" href="css/customer/base.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/header.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/hero.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/catalog.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/product-detail.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/cart-checkout.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/wishlist-button.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/mega-menu.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/search.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/wishlist-drawer.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/modals.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/toast.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/product-carousel.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/responsive-layout.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/account.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/auth-modal.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/footer.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/product-list.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/zalo-button.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/responsive-mobile.css?v=2.0">
+    <link rel="stylesheet" href="css/customer/orders.css?v=2.0">
+</head>
+
+<body>
+
+    <!-- BRAND NAVIGATION -->
+    <header class="brand-header">
+        <a href="#" onclick="showCatalog(event)" class="brand-logo">
+            Croco closet
+            <span>Premium Wear</span>
+        </a>
+
+        <nav class="nav-menu" id="navMenu">
+            <!-- TRANG CHỦ -->
+            <div class="nav-item-container">
+                <a href="#" onclick="showCatalog(event)" class="nav-link">TRANG CHỦ</a>
+            </div>
+
+            <!-- BEST SELLER -->
+            <div class="nav-item-container">
+                <a href="#" onclick="setFilter(event, 'best-seller')" class="nav-link highlight">BÁN CHẠY</a>
+                <div class="mega-menu">
+                    <div class="mega-menu-content">
+                        <div class="mega-col">
+                            <h4>Hàng Mới Về</h4>
+                            <ul>
+                                <li><a href="#" onclick="setFilter(event, 'new-in')">XEM TẤT CẢ HÀNG MỚI</a></li>
+                                <li><a href="#" onclick="setFilter(event, 'new-in')">Hàng mới về tháng này</a></li>
+                                <li><a href="#" onclick="setFilter(event, 'new-in')">Sản phẩm độc quyền mới</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-col">
+                            <h4>Xu Hướng & Tiêu Điểm</h4>
+                            <ul>
+                                <li><a href="#" onclick="setFilter(event, 'best-seller')">Sản phẩm bán chạy nhất</a>
+                                </li>
+                                <li><a href="#" onclick="setFilter(event, 'trending')">Đang thịnh hành (Hot)</a></li>
+                                <li><a href="#" onclick="setFilter(event, 'best-seller')">Vừa về thêm (Restocked)</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+        <div class="nav-actions">
+            <!-- Pill Button: Đơn hàng của tôi -->
+            <a href="#my-orders" class="my-orders-btn" onclick="showMyOrdersSection(event)" id="myOrdersNavLink">📦 Đơn
+                hàng của tôi</a>
+
+            <!-- Search Button -->
+            <a href="#" class="action-icon" id="openSearchBtn" aria-label="Tìm kiếm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+            </a>
+
+            <!-- Wishlist Button -->
+            <a href="#" class="action-icon" id="openWishlistBtn" aria-label="Yêu thích">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                <span class="cart-badge" id="wishlistBadgeCount"
+                    style="background-color: #ff3b30; display: none;">0</span>
+            </a>
+
+            <!-- ACCOUNT MENU AND DROPDOWN -->
+            <div class="account-menu-container" id="accountMenuContainer">
+                <a href="#" class="action-icon" id="accountMenuBtn" aria-label="Tài khoản">
+                    <div class="account-btn-content" id="accountBtnContent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        <span class="account-text">Tài khoản</span>
+                    </div>
+                </a>
+                <div class="account-dropdown" id="accountDropdown">
+                    <div class="dropdown-header">
+                        <span class="dropdown-username" id="dropdownUsername">Khách hàng</span>
+                        <span class="dropdown-phone" id="dropdownPhone">Chưa đăng nhập</span>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="logoutBtn">Đăng xuất</button>
+                </div>
+            </div>
+
+            <a href="#" class="action-icon" id="openCartBtn" aria-label="Giỏ hàng">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1" />
+                    <circle cx="20" cy="21" r="1" />
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg>
+                <span class="cart-badge" id="cartBadgeCount">0</span>
+            </a>
+        </div>
+
+        <!-- SEARCH BAR OVERLAY -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm (ví dụ: đầm hồng, áo thun)..."
+                    aria-label="Tìm kiếm">
+                <button class="search-close-btn" id="closeSearchBtn">&times;</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container-customer" id="toastContainerCustomer"></div>
+
+    <!-- CATALOG VIEW -->
+    <div id="catalog-section">
+        <div id="home-view">
+            <!-- HERO BANNER -->
+            <div class="hero-banner" id="hero-banner-section">
+                <div class="hero-content">
+                    <span class="hero-subtitle">MÙA HÈ EXCLUSIVE</span>
+                    <h1 class="hero-title">Bộ Sưu Tập Sang Trọng</h1>
+                    <a href="#" id="btn-banner-shop" onclick="navigateToShop(event)" class="hero-btn">Mua ngay</a>
+                </div>
+            </div>
+
+            <!-- NEW HOMEPAGE PRODUCTS SECTION -->
+            <section class="product-section" id="homepage-products-section">
+                <!-- Dynamic Category Rows -->
+            </section>
+
+            <!-- ALL PRODUCTS SECTION (initially hidden) -->
+            <section id="all-products-section" style="display: none;">
+                <!-- CATEGORIES FILTER BAR -->
+                <div class="category-filter-bar" id="categoryFilterBar">
+                    <!-- Dynamic categories filter buttons will be loaded here -->
+                </div>
+
+                <!-- PRODUCT LIST GRID -->
+                <main class="catalog-container">
+                    <div class="product-grid" id="productGridList">
+                        <!-- Dynamic product cards -->
+                    </div>
+                </main>
+            </section>
+        </div>
+
+        <!-- ORDERS VIEW (initially hidden) -->
+        <div id="orders-view" style="display: none; max-width: 1200px; margin: 2rem auto 3rem; padding: 0 15px;">
+            <!-- Back to Home Button -->
+            <button onclick="showView('home')"
+                style="background: none; border: none; font-size: 1rem; color: var(--color-text-main); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; font-weight: 500; padding: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                ← Quay lại trang chủ
+            </button>
+
+            <div
+                style="border-bottom: 1px solid var(--color-border); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <h2
+                    style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 500; text-transform: uppercase; margin: 0;">
+                    Đơn hàng của tôi</h2>
+
+                <!-- Phone Lookup Form -->
+                <div style="display: flex; gap: 8px;">
+                    <input type="tel" id="lookupPhoneInput" placeholder="Nhập SĐT để tìm đơn hàng..."
+                        style="padding: 0.6rem 1rem; border: 1px solid var(--color-border); font-size: 0.85rem; outline: none; width: 220px; border-radius: 4px;">
+                    <button id="lookupOrdersBtn" class="confirm-btn-submit"
+                        style="padding: 0.6rem 1.2rem; font-size: 0.85rem; border-radius: 4px; cursor: pointer;">Tìm
+                        đơn</button>
+                </div>
+            </div>
+
+            <!-- Filter Tab Bar -->
+            <div class="orders-filter-tab-bar"
+                style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 1.5rem; border-bottom: 1px solid #f1f5f9;">
+                <button class="order-tab-btn active" onclick="setOrderTabFilter('Tất cả')">Tất cả</button>
+                <button class="order-tab-btn" onclick="setOrderTabFilter('Chờ xác nhận')">Chờ xác nhận</button>
+                <button class="order-tab-btn" onclick="setOrderTabFilter('Đã xác nhận')">Đã xác nhận</button>
+                <button class="order-tab-btn" onclick="setOrderTabFilter('Đang giao')">Đang giao</button>
+                <button class="order-tab-btn" onclick="setOrderTabFilter('Hoàn thành')">Hoàn thành</button>
+                <button class="order-tab-btn" onclick="setOrderTabFilter('Đã hủy')">Đã hủy</button>
+            </div>
+
+            <div id="my-orders-list">
+                <!-- Dynamic orders list will render here -->
+                <p style="color: var(--color-text-muted); text-align: center; padding: 3rem 0;">Bạn chưa đặt đơn hàng
+                    nào trên thiết bị này. Nhập số điện thoại để tìm các đơn hàng đã đặt.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT DETAIL VIEW (SPLIT SCREEN) -->
+    <main class="detail-view-container" id="detail-section">
+        <a href="#" onclick="showCatalog(event)" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+            </svg>
+            Quay lại cửa hàng
+        </a>
+
+        <div class="split-layout">
+            <!-- Left Column: Image Gallery -->
+            <div class="gallery-column">
+                <!-- Khung ảnh lớn -->
+                <div class="main-image-container">
+                    <img id="detailed-main-img" src="" alt="Sản phẩm chính">
+                </div>
+                <!-- Hàng ảnh nhỏ phía dưới -->
+                <div class="thumbnail-images-row" id="thumbnail-images-row">
+                    <!-- Dynamic angle thumbnails -->
+                </div>
+            </div>
+
+            <!-- Right Column: Buying Options -->
+            <div class="info-column">
+                <div class="breadcrumb">
+                    <a href="#" onclick="showCatalog(event)">Trang chủ</a> / <span
+                        id="breadcrumb-category">Dresses</span>
+                </div>
+
+                <h1 class="detail-product-name" id="detail-name">Dress Product Name</h1>
+
+                <div class="detail-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text" id="detail-rating-reviews">5.0 (63 đánh giá)</span>
+                </div>
+
+                <div class="detail-price" id="detail-price">2.150.000đ</div>
+
+                <p class="detail-description" id="detail-desc">
+                    Mô tả ngắn sản phẩm tinh tế, sang trọng.
+                </p>
+
+                <!-- Color Section -->
+                <div class="selection-section">
+                    <div class="section-header">
+                        <span>Màu sắc (Colour): <strong id="selected-color-label">Màu hồng phấn</strong></span>
+                    </div>
+                    <div class="color-swatches" id="color-swatches-list">
+                        <button class="color-swatch-btn pink active" data-color="Màu hồng phấn"
+                            title="Hồng phấn"></button>
+                        <button class="color-swatch-btn black" data-color="Đen" title="Đen"></button>
+                        <button class="color-swatch-btn yellow" data-color="Vàng nhạt" title="Vàng nhạt"></button>
+                        <button class="color-swatch-btn white" data-color="Trắng" title="Trắng"></button>
+                        <button class="color-swatch-btn blue" data-color="Xanh nhạt" title="Xanh nhạt"></button>
+                    </div>
+                </div>
+
+                <!-- Size Section -->
+                <div class="selection-section">
+                    <div class="section-header">
+                        <span>Kích thước (Size): <strong id="selected-size-label">Chọn Size</strong></span>
+                        <a href="#" class="size-guide-link" id="openSizeGuideBtn">Hướng dẫn chọn size</a>
+                    </div>
+                    <div class="size-options" id="size-options-list">
+                        <!-- Dynamic sizing option buttons -->
+                    </div>
+
+                    <button class="find-size-btn" id="openFindSizeBtn" style="margin-top: 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        Tìm size của tôi
+                    </button>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div style="display: flex; gap: 1rem; align-items: center; margin: 1.5rem 0;">
+                    <button class="add-to-cart-btn" id="addToCartBtn" style="flex: 1; margin: 0;">THÊM VÀO GIỎ
+                        HÀNG</button>
+                    <button class="wishlist-detail-btn" id="wishlistDetailBtn" aria-label="Yêu thích">
+                        <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Accordions -->
+                <div class="accordion-item active">
+                    <div class="accordion-title">Mô tả chi tiết <span class="plus">+</span></div>
+                    <div class="accordion-content" style="max-height: 200px;">
+                        <p>Dòng sản phẩm tôn dáng đặc trưng của Croco closet. Đường chỉ may chìm giấu mũi vải tỉ mỉ tạo
+                            form ôm sang trọng và thanh thoát nhất.</p>
+                        <ul>
+                            <li>Thiết kế ôm theo đường cong cơ thể tôn dáng</li>
+                            <li>Chất liệu dệt kim bền sợi, mềm mát</li>
+                            <li>Khóa kéo kim loại ẩn sau sang trọng</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">Giao hàng & đổi trả <span class="plus">+</span></div>
+                    <div class="accordion-content">
+                        <p>Miễn phí giao hàng tiêu chuẩn toàn quốc cho đơn hàng từ 1.000.000đ.</p>
+                        <p>Chính sách hỗ trợ đổi hàng/size dễ dàng trong vòng 7 ngày làm việc kể từ lúc nhận hàng.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SOCIAL MEDIA FOOTER SECTION -->
+    <div class="social-footer-section">
+        <!-- Dòng chữ Instagram phía trên -->
+        <div class="instagram-follow">
+            <a href="https://www.instagram.com/croco.closet/" target="_blank">Follow us on instagram @croco.closet</a>
+        </div>
+
+        <!-- Hàng icon phía dưới -->
+        <div class="social-icons-row">
+            <a href="https://www.facebook.com/CroCocloset" target="_blank" title="Facebook"><i
+                    class="fab fa-facebook-f"></i></a>
+            <a href="https://shopee.vn/crococloset" target="_blank" title="Shopee"><i
+                    class="fas fa-shopping-bag"></i></a>
+            <a href="https://www.tiktok.com/@crococloset" target="_blank" title="TikTok"><i
+                    class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+
+    <!-- SHOPPING CART SLIDE DRAWER -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h2 class="cart-title">Giỏ Hàng</h2>
+            <button class="close-cart-btn" id="closeCartBtn" aria-label="Đóng giỏ hàng">&times;</button>
+        </div>
+        <div class="cart-body" id="cartDrawerBody">
+            <!-- Dynamic Cart Items -->
+            <p class="cart-empty-message">Giỏ hàng của bạn đang trống.</p>
+        </div>
+
+        <div class="checkout-section" id="checkoutSection" style="display: none;">
+            <div class="cart-total-row">
+                <span>Tổng tiền:</span>
+                <span id="cartTotalSum">0đ</span>
+            </div>
+
+            <form id="checkoutForm">
+                <div class="form-group-custom">
+                    <label for="customerName">Tên người nhận</label>
+                    <input type="text" id="customerName" required placeholder="Ví dụ: Vy Nguyễn">
+                </div>
+                <div class="form-group-custom">
+                    <label for="customerPhone">Số điện thoại</label>
+                    <input type="tel" id="customerPhone" required placeholder="Ví dụ: 0987654321">
+                </div>
+                <div class="form-group-custom">
+                    <label for="customerAddress">Địa chỉ nhận hàng</label>
+                    <input type="text" id="customerAddress" required placeholder="Ví dụ: 89 Lê Lợi, Quận 1, TPHCM">
+                </div>
+                <button type="submit" class="place-order-btn">ĐẶT MUA NGAY</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ORDER CONFIRMATION MODAL -->
+    <div class="modal-backdrop-custom" id="confirmOrderModalBackdrop">
+        <div class="confirm-order-modal">
+            <div class="confirm-order-header">
+                <h3>Xác Nhận Đơn Hàng</h3>
+                <button class="close-confirm-btn" id="closeConfirmOrderBtn">&times;</button>
+            </div>
+            <div class="confirm-order-body">
+                <div class="confirm-order-summary">
+                    <h4>Tóm tắt đơn hàng:</h4>
+                    <div id="confirmOrderItemsList">
+                        <!-- Dynamic items -->
+                    </div>
+                    <div class="confirm-total-row">
+                        <strong>Tổng tiền:</strong>
+                        <strong id="confirmOrderTotal">0đ</strong>
+                    </div>
+                </div>
+
+                <div class="confirm-recipient-info">
+                    <h4>Thông tin người nhận:</h4>
+                    <p><strong>Người nhận:</strong> <span id="confirmCustomerName"></span></p>
+                    <p><strong>Số điện thoại:</strong> <span id="confirmCustomerPhone"></span></p>
+                    <p><strong>Địa chỉ nhận:</strong> <span id="confirmCustomerAddress"></span></p>
+                </div>
+
+                <div class="confirm-payment-section">
+                    <h4>Phương thức thanh toán:</h4>
+                    <div class="payment-options">
+                        <label class="payment-option-label">
+                            <input type="radio" name="paymentMethod" value="COD" checked>
+                            <span>Thanh toán tiền mặt khi nhận hàng (COD)</span>
+                        </label>
+                        <label class="payment-option-label">
+                            <input type="radio" name="paymentMethod" value="BANK">
+                            <span>Chuyển khoản Ngân hàng (Mã VietQR)</span>
+                        </label>
+                    </div>
+
+                    <!-- VietQR Display Area -->
+                    <div class="vietqr-display-container" id="vietqrDisplayContainer"
+                        style="display: none; text-align: center; margin-top: 1rem; padding: 1rem; border: 1px dashed #ddd; border-radius: 4px;">
+                        <p style="font-size: 0.85rem; color: #555; margin-bottom: 0.5rem;">Techcombank • TRAN NGUYEN
+                            KHANH VY • 9999993006</p>
+                        <img id="vietqrImage" src="" alt="Mã QR Thanh Toán"
+                            style="max-width: 250px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <p style="font-size: 0.8rem; color: #888; margin-top: 0.5rem; font-style: italic;">Quét mã QR
+                            trên bằng ứng dụng ngân hàng để thanh toán nhanh.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-order-footer">
+                <button class="confirm-btn-cancel" id="cancelConfirmOrderBtn">Quay lại</button>
+                <button class="confirm-btn-submit" id="submitConfirmOrderBtn">XÁC NHẬN ĐẶT ĐƠN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WISHLIST DRAWER (LEFT SIDE) -->
+    <div class="wishlist-drawer-backdrop" id="wishlistDrawerBackdrop"></div>
+    <div class="wishlist-drawer" id="wishlistDrawer">
+        <div class="cart-header">
+            <h2 class="cart-title">Sản phẩm yêu thích</h2>
+            <button class="close-cart-btn" id="closeWishlistBtn" aria-label="Đóng yêu thích">&times;</button>
+        </div>
+        <div class="cart-body" id="wishlistDrawerBody" style="overflow-y: auto;">
+            <!-- Dynamic Wishlist Items -->
+            <p class="cart-empty-message">Danh sách yêu thích đang trống.</p>
+        </div>
+    </div>
+
+    <!-- MODAL SIZE GUIDE -->
+    <div class="modal-backdrop" id="sizeGuideModalBackdrop">
+        <div class="custom-dialog">
+            <button class="modal-close-btn" onclick="closeModals()">&times;</button>
+            <h3 class="modal-title-custom">Bảng quy đổi kích cỡ</h3>
+            <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1rem; text-align: center;">
+                Bảng thông số ngực/eo/mông quy đổi chuẩn theo cm
+            </p>
+            <table class="size-table">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Vòng ngực (cm)</th>
+                        <th>Vòng eo (cm)</th>
+                        <th>Vòng mông (cm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>XS</td>
+                        <td>78 - 82</td>
+                        <td>60 - 64</td>
+                        <td>84 - 88</td>
+                    </tr>
+                    <tr>
+                        <td>S</td>
+                        <td>82 - 86</td>
+                        <td>64 - 68</td>
+                        <td>88 - 92</td>
+                    </tr>
+                    <tr>
+                        <td>M</td>
+                        <td>86 - 90</td>
+                        <td>68 - 72</td>
+                        <td>92 - 96</td>
+                    </tr>
+                    <tr>
+                        <td>L</td>
+                        <td>90 - 94</td>
+                        <td>72 - 76</td>
+                        <td>96 - 100</td>
+                    </tr>
+                    <tr>
+                        <td>XL</td>
+                        <td>94 - 98</td>
+                        <td>76 - 80</td>
+                        <td>100 - 104</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- MODAL FIND MY SIZE -->
+    <div class="modal-backdrop" id="findSizeModalBackdrop">
+        <div class="custom-dialog">
+            <button class="modal-close-btn" onclick="closeModals()">&times;</button>
+            <h3 class="modal-title-custom">Tìm size của tôi</h3>
+
+            <form class="find-size-form" id="findSizeCalculator">
+                <div class="form-group-custom">
+                    <label for="heightCm">Chiều cao (cm)</label>
+                    <input type="number" id="heightCm" required min="120" max="220" placeholder="Ví dụ: 162">
+                </div>
+                <div class="form-group-custom">
+                    <label for="weightKg">Cân nặng (kg)</label>
+                    <input type="number" id="weightKg" required min="30" max="130" placeholder="Ví dụ: 50">
+                </div>
+                <button type="submit" class="place-order-btn" style="margin-top: 0.5rem;">Đề xuất size</button>
+            </form>
+
+            <div class="result-box-size" id="sizeCalculatorResult">
+                Size phù hợp đề xuất: <strong>S</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL AUTHENTICATION -->
+    <div class="auth-modal-backdrop" id="authModalBackdrop">
+        <div class="auth-dialog">
+            <button class="modal-close-btn" id="closeAuthBtnModal">&times;</button>
+            <h3 class="modal-title-custom">Tài khoản của tôi</h3>
+
+            <!-- Step 1: Login Options (Google, Facebook, Phone Input) -->
+            <div class="auth-step" id="authStepPhone">
+                <button class="social-auth-btn" id="loginGoogleBtn">
+                    <!-- Google SVG Logo -->
+                    <svg width="18" height="18" viewBox="0 0 18 18">
+                        <path fill="#4285F4"
+                            d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84c-.21 1.12-.84 2.07-1.8 2.72v2.24h2.9c1.7-1.57 2.7-3.87 2.7-6.59z" />
+                        <path fill="#34A853"
+                            d="M9 18c2.43 0 4.47-.8 5.96-2.2l-2.9-2.24c-.8.54-1.84.87-3.06.87-2.35 0-4.34-1.58-5.05-3.72H.9v2.3C2.38 15.98 5.46 18 9 18z" />
+                        <path fill="#FBBC05"
+                            d="M3.95 10.71c-.18-.54-.28-1.12-.28-1.71s.1-1.17.28-1.71V4.99H.9C.33 6.13 0 7.53 0 9s.33 2.87.9 4.01l3.05-2.3z" />
+                        <path fill="#EA4335"
+                            d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.4C13.46.98 11.42 0 9 0 5.46 0 2.38 2.02.9 4.99l3.05 2.3c.71-2.14 2.7-3.72 5.05-3.72z" />
+                    </svg>
+                    Đăng nhập bằng Google
+                </button>
+
+                <button class="social-auth-btn" id="loginFacebookBtn">
+                    <!-- Facebook SVG Logo -->
+                    <svg width="18" height="18" fill="#1877F2" viewBox="0 0 24 24">
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                    Đăng nhập bằng Facebook
+                </button>
+
+                <div class="auth-divider">Hoặc sử dụng số điện thoại</div>
+
+                <form id="phoneAuthForm" class="find-size-form">
+                    <div class="form-group-custom">
+                        <label for="regPhoneInput">Số điện thoại</label>
+                        <input type="tel" id="regPhoneInput" required placeholder="Ví dụ: 0987654321">
+                    </div>
+                    <button type="submit" class="place-order-btn" id="sendOtpBtn">Gửi mã OTP</button>
+                </form>
+            </div>
+
+            <!-- Step 2: OTP Input and Countdown -->
+            <div class="auth-step hidden" id="authStepOtp">
+                <p
+                    style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1.2rem; text-align: center;">
+                    Mã xác thực OTP đã được gửi đến số điện thoại của bạn.
+                </p>
+                <form id="otpAuthForm" class="find-size-form">
+                    <div class="form-group-custom">
+                        <label for="otpInput">Mã OTP 6 số</label>
+                        <input type="text" id="otpInput" required maxlength="6" pattern="\d{6}"
+                            placeholder="Nhập 6 chữ số">
+                    </div>
+                    <button type="submit" class="place-order-btn">Xác thực mã</button>
+
+                    <div class="otp-countdown-text" id="otpCountdownText">
+                        Gửi lại mã sau <span>60</span> giây
+                    </div>
+                    <a class="resend-btn" id="resendOtpBtn">Gửi lại mã OTP</a>
+                </form>
+            </div>
+
+            <!-- Step 3: Additional details for Register (Username, Password, Display Name) -->
+            <div class="auth-step hidden" id="authStepRegister">
+                <p
+                    style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1.2rem; text-align: center;">
+                    Xác thực số điện thoại thành công! Vui lòng hoàn tất thông tin tài khoản.
+                </p>
+                <form id="registerForm" class="find-size-form">
+                    <div class="form-group-custom">
+                        <label for="regUsernameInput">Tên đăng nhập</label>
+                        <input type="text" id="regUsernameInput" required placeholder="Ví dụ: khanhvy99">
+                    </div>
+                    <div class="form-group-custom">
+                        <label for="regPasswordInput">Mật khẩu</label>
+                        <input type="password" id="regPasswordInput" required placeholder="Tối thiểu 6 ký tự">
+                    </div>
+                    <div class="form-group-custom">
+                        <label for="regDisplayNameInput">Tên hiển thị trên web</label>
+                        <input type="text" id="regDisplayNameInput" required placeholder="Ví dụ: Khánh Vy">
+                    </div>
+                    <button type="submit" class="place-order-btn">Hoàn tất đăng ký</button>
+                </form>
+            </div>
+
+            <!-- Recaptcha Container for Firebase Phone Auth -->
+            <div id="recaptcha-container"></div>
+        </div>
+    </div>
+
+    <!-- LOGIC CLIENT JAVASCRIPT -->
+
+    <!-- JS: dùng chung -> trang khách. Thứ tự nạp quan trọng, main.js luôn cuối cùng -->
+    <script src="js/shared/storage.js?v=2.0"></script>
+    <script src="js/shared/utils.js?v=2.0"></script>
+    <script src="js/shared/normalizers.js?v=2.0"></script>
+    <script src="js/shared/products-sync.js?v=2.0"></script>
+    <script src="js/customer/constants.js?v=2.0"></script>
+    <script src="js/customer/state.js?v=2.0"></script>
+    <script src="js/customer/toast.js?v=2.0"></script>
+    <script src="js/customer/data-sync.js?v=2.0"></script>
+    <script src="js/customer/wishlist.js?v=2.0"></script>
+    <script src="js/customer/navigation.js?v=2.0"></script>
+    <script src="js/customer/product-cards.js?v=2.0"></script>
+    <script src="js/customer/routing.js?v=2.0"></script>
+    <script src="js/customer/product-detail.js?v=2.0"></script>
+    <script src="js/customer/search.js?v=2.0"></script>
+    <script src="js/customer/cart.js?v=2.0"></script>
+    <script src="js/customer/checkout.js?v=2.0"></script>
+    <script src="js/customer/my-orders.js?v=2.0"></script>
+    <script src="js/customer/size-guide.js?v=2.0"></script>
+    <script src="js/customer/auth-service.js?v=2.0"></script>
+    <script src="js/customer/account.js?v=2.0"></script>
+    <script src="js/customer/banner.js?v=2.0"></script>
+    <script src="js/customer/main.js?v=2.0"></script>
+
+    <!-- Thẻ nút Zalo CSKH Floating -->
+    <a href="https://zalo.me/0358853746" target="_blank" class="zalo-cskh-btn" title="Tư vấn Chăm sóc khách hàng">
+        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="Tư vấn CSKH">
+    </a>
+</body>
+
+</html>

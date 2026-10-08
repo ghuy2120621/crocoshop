@@ -1,0 +1,250 @@
+/* ==========================================
+   TRANG KHÁCH: Xác nhận đơn & Đơn hàng của tôi
+   ========================================== */
+
+/* --- ORDER CONFIRMATION MODAL & MY ORDERS STYLES --- */
+.modal-backdrop-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999999;
+    padding: 15px;
+}
+
+.modal-backdrop-custom.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.confirm-order-modal {
+    background-color: var(--color-surface);
+    width: 100%;
+    max-width: 550px;
+    max-height: 90vh;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalFadeIn 0.3s ease;
+}
+
+.confirm-order-header {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.confirm-order-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.close-confirm-btn {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+}
+
+.confirm-order-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.confirm-order-summary,
+.confirm-recipient-info,
+.confirm-payment-section {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 1.2rem;
+}
+
+.confirm-order-summary h4,
+.confirm-recipient-info h4,
+.confirm-payment-section h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+    color: var(--color-text-main);
+}
+
+.confirm-order-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    color: var(--color-text-muted);
+}
+
+.confirm-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    margin-top: 0.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 0.6rem;
+}
+
+.confirm-recipient-info p {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    color: var(--color-text-muted);
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.payment-option-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: var(--color-text-muted);
+}
+
+.payment-option-label input[type="radio"] {
+    accent-color: var(--color-text-main);
+}
+
+.confirm-order-footer {
+    padding: 1.2rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    background-color: #fafafa;
+}
+
+.confirm-btn-cancel {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--color-border);
+    background: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+}
+
+.confirm-btn-cancel:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.confirm-btn-submit {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-text-main);
+    color: var(--color-surface);
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+}
+
+.confirm-btn-submit:hover {
+    background-color: #2c2c2c;
+}
+
+.order-status-badge.status-waiting {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.order-status-badge.status-confirmed {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+
+.order-status-badge.status-shipping {
+    background-color: #f3e8ff;
+    color: #7c3aed;
+}
+
+.order-status-badge.status-success {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.order-status-badge.status-cancelled {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Set z-index high for cart drawer checkout button on mobile */
+.checkout-section {
+    z-index: 1000 !important;
+    position: relative !important;
+}
+
+.place-order-btn {
+    z-index: 1000 !important;
+    position: relative !important;
+}
+
+.my-orders-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f4f4f5;
+    color: #18181b;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid #e4e4e7;
+    transition: all 0.2s ease;
+}
+
+.my-orders-btn:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.order-tab-btn {
+    padding: 8px 16px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #000;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.order-tab-btn.active {
+    background: #000 !important;
+    color: #fff !important;
+    border-color: #000 !important;
+}
+
+.order-tab-btn:hover {
+    background: #f1f5f9;
+}

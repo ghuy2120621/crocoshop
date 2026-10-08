@@ -1,0 +1,168 @@
+/* ==========================================
+   TRANG KHÁCH: Mega menu
+   ========================================== */
+
+/* --- MEGA MENU DESIGN --- */
+.brand-header {
+    position: relative;
+    /* Ensure mega menu can align to header */
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.nav-item-container {
+    position: static;
+    /* Mega menu is positioned relative to header */
+}
+
+.nav-link {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-main);
+    padding: 1.5rem 0;
+    /* Extends hover area */
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-block;
+}
+
+.nav-link.highlight {
+    color: #d97706 !important;
+    /* Golden best seller text */
+    font-weight: 700;
+}
+
+.nav-link:hover {
+    color: var(--color-text-muted);
+}
+
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    z-index: 95;
+    padding: 2.5rem 4rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.nav-item-container:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mega-menu-content {
+    max-width: 750px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    text-align: left;
+}
+
+.mega-col ul.two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem 2.5rem;
+}
+
+.mega-col h4 {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-main);
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+.mega-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.mega-col ul li {
+    text-align: left;
+}
+
+/* Định dạng in đậm, tô đen cho tất cả các nút Xem tất cả trong menu */
+.mega-col ul li a.highlight-all,
+.view-all-link {
+    font-weight: 900 !important;
+    /* Đẩy lên mức đậm nhất của lập trình web */
+    color: #000000 !important;
+    /* Tô đen tuyền */
+    text-transform: uppercase;
+    /* Viết hoa sang trọng */
+    letter-spacing: 0.5px;
+    /* Giãn chữ nhẹ */
+    font-family: 'Arial Black', 'Helvetica Inserat', 'Impact', sans-serif !important;
+    /* Dòng trên ép trình duyệt dùng font chữ dày đặc biệt để hiện chữ béo và đen y như nút B trong Word */
+}
+
+.mega-col ul li a {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.mega-col ul li a:hover {
+    color: var(--color-text-main);
+    padding-left: 5px;
+}
+
+.mega-promo {
+    background-color: #fcfbf9;
+    padding: 1.2rem;
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 2px;
+    text-align: left;
+}
+
+.mega-promo h5 {
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.mega-promo p {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.mega-promo-btn {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-main);
+    text-decoration: underline;
+}

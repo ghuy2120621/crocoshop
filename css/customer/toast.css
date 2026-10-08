@@ -1,0 +1,43 @@
+/* ==========================================
+   TRANG KHÁCH: Thông báo nhanh
+   ========================================== */
+
+/* --- TOAST SYSTEM (TOAST) --- */
+.toast-container-customer {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast-customer {
+    background-color: var(--color-text-main);
+    color: var(--color-surface);
+    padding: 0.8rem 1.8rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideDownToast 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideDownToast {
+    from {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

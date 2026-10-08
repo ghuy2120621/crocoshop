@@ -1,0 +1,219 @@
+/* ==========================================
+   ADMIN: Modal & form sản phẩm
+   ========================================== */
+
+/* ==========================================
+   MODAL COMPONENT
+   ========================================== */
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 6, 12, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    width: 500px;
+    max-width: 90%;
+    border-radius: 20px;
+    transform: translateY(-20px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+.modal-backdrop.open .modal {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.close-modal-btn {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 8px;
+    transition: var(--transition-fast);
+}
+
+.close-modal-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.modal-body {
+    padding: 1.5rem 0;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--color-purple);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.25);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Modern Checklist for Sizes */
+.size-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.size-checkbox-label {
+    cursor: pointer;
+}
+
+.size-checkbox-label input {
+    display: none;
+}
+
+.size-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-input);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.size-checkbox-label input:checked+.size-box {
+    background: var(--color-purple-glow);
+    border-color: var(--color-purple);
+    color: var(--color-purple);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+/* Modern Color Checklist */
+.color-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.color-checkbox-label {
+    cursor: pointer;
+    position: relative;
+}
+
+.color-checkbox-label input {
+    display: none;
+}
+
+.color-swatch {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: var(--transition-fast);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bg-black {
+    background-color: #18181b;
+}
+
+.bg-white {
+    background-color: #f4f4f5;
+    border: 1px solid #d4d4d8 !important;
+}
+
+.bg-beige {
+    background-color: #f5f5dc;
+}
+
+.bg-blue {
+    background-color: #3b82f6;
+}
+
+.bg-pink {
+    background-color: #ec4899;
+}
+
+.bg-green {
+    background-color: #10b981;
+}
+
+.bg-red {
+    background-color: #ef4444;
+}
+
+.color-checkbox-label input:checked+.color-swatch {
+    transform: scale(1.15);
+    border-color: var(--color-purple);
+    box-shadow: 0 0 12px var(--color-purple);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+}

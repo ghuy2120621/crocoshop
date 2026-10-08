@@ -1,0 +1,61 @@
+/* ==========================================
+   TRANG KHÁCH: Danh sách sản phẩm (kiểu lookbook)
+   ========================================== */
+
+/* --- PRODUCT LIST OVERRIDES (LOOKBOOK/SHOPIFY STYLE) --- */
+.product-slider,
+.product-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    scrollbar-width: none !important;
+    width: 100% !important;
+    padding-bottom: 10px !important;
+}
+
+.product-slider::-webkit-scrollbar,
+.product-grid::-webkit-scrollbar {
+    display: none !important;
+}
+
+.product-card {
+    flex: 0 0 calc(25% - 8px) !important;
+    width: calc(25% - 8px) !important;
+    min-width: 240px !important;
+    max-width: calc(25% - 8px) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.product-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.product-img-wrapper,
+.image-container {
+    width: 100% !important;
+    height: 420px !important;
+    aspect-ratio: 3 / 4 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.product-img,
+.product-card-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+}

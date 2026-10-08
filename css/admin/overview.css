@@ -1,0 +1,267 @@
+/* ==========================================
+   ADMIN: Tab Tổng quan (KPI)
+   ========================================== */
+
+/* ==========================================
+   TAB OVERVIEW: KPI & DETAILS
+   ========================================== */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.kpi-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition-smooth);
+}
+
+.kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+}
+
+.kpi-card.purple::before {
+    background: var(--color-purple);
+}
+
+.kpi-card.pink::before {
+    background: var(--color-pink);
+}
+
+.kpi-card.emerald::before {
+    background: var(--color-emerald);
+}
+
+.kpi-card.amber::before {
+    background: var(--color-amber);
+}
+
+.kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.kpi-card-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.kpi-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.kpi-title {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kpi-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.kpi-trend {
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 500;
+}
+
+.kpi-trend.positive {
+    color: var(--color-emerald);
+}
+
+.kpi-trend.negative {
+    color: var(--color-red);
+}
+
+.kpi-trend.neutral {
+    color: var(--text-muted);
+}
+
+.kpi-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.purple .kpi-icon {
+    background: var(--color-purple-glow);
+    color: var(--color-purple);
+}
+
+.pink .kpi-icon {
+    background: var(--color-pink-glow);
+    color: var(--color-pink);
+}
+
+.emerald .kpi-icon {
+    background: var(--color-emerald-glow);
+    color: var(--color-emerald);
+}
+
+.amber .kpi-icon {
+    background: var(--color-amber-glow);
+    color: var(--color-amber);
+}
+
+/* Details Section Grid */
+.details-grid {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.flex-grow-2 {
+    flex: 2 1 500px;
+}
+
+.flex-grow-1 {
+    flex: 1 1 300px;
+}
+
+.dashboard-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.panel-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Data Tables */
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th {
+    padding: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table td {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.data-table tbody tr {
+    transition: var(--transition-fast);
+}
+
+.data-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.015);
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background: var(--color-amber-glow);
+    color: var(--color-amber);
+}
+
+.status-badge.approved {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--color-purple);
+}
+
+.status-badge.processing {
+    background: var(--color-blue-glow);
+    color: var(--color-blue);
+}
+
+.status-badge.shipped {
+    background: var(--color-emerald-glow);
+    color: var(--color-emerald);
+}
+
+.status-badge.cancelled {
+    background: var(--color-red-glow);
+    color: var(--color-red);
+}
+
+/* Mini Category Panel Elements */
+.mini-chart {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.category-legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}

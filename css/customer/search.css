@@ -1,0 +1,74 @@
+/* ==========================================
+   TRANG KHÁCH: Thanh tìm kiếm
+   ========================================== */
+
+/* --- SMART SEARCH BAR --- */
+.search-overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 90;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.search-overlay.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-container svg {
+    position: absolute;
+    left: 1rem;
+    color: var(--color-text-muted);
+}
+
+.search-container input {
+    width: 100%;
+    padding: 0.75rem 2.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    font-size: 0.85rem;
+    outline: none;
+    transition: var(--transition-smooth);
+    font-family: inherit;
+}
+
+.search-container input:focus {
+    border-color: var(--color-text-main);
+}
+
+.search-close-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: var(--transition-smooth);
+}
+
+.search-close-btn:hover {
+    color: var(--color-text-main);
+}

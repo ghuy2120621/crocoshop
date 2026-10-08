@@ -1,0 +1,104 @@
+/* ==========================================
+   TRANG KHÁCH: Modal bảng size / tìm size
+   ========================================== */
+
+/* --- MODAL DIALOGS (SIZE GUIDE / FIND SIZE) --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 299;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.custom-dialog {
+    background-color: var(--color-surface);
+    max-width: 550px;
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(20px);
+    transition: transform 0.4s ease-out;
+    padding: 2rem;
+    position: relative;
+}
+
+.modal-backdrop.open .custom-dialog {
+    transform: translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    transition: var(--transition-smooth);
+}
+
+.modal-close-btn:hover {
+    color: var(--color-text-main);
+}
+
+.modal-title-custom {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+/* Size Guide Table */
+.size-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+
+.size-table th,
+.size-table td {
+    border: 1px solid var(--color-border);
+    padding: 0.65rem;
+    text-align: center;
+}
+
+.size-table th {
+    background-color: #FAF9F6;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Find My Size Form */
+.find-size-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.result-box-size {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background-color: #FAF9F6;
+    border: 1px dashed var(--color-text-main);
+    text-align: center;
+    font-weight: 500;
+    display: none;
+    font-size: 0.85rem;
+}

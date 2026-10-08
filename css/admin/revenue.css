@@ -1,0 +1,78 @@
+/* ==========================================
+   ADMIN: Tab Doanh thu
+   ========================================== */
+
+/* ==========================================
+   TAB REVENUE: REPORT PANELS
+   ========================================== */
+
+.revenue-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.time-filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.revenue-summary-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.summary-title {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.summary-sub {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.text-emerald {
+    color: var(--color-emerald);
+}
+
+.text-purple {
+    color: var(--color-purple);
+}
+
+.text-pink {
+    color: var(--color-pink);
+}
+
+.charts-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.chart-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 320px;
+    width: 100%;
+}
