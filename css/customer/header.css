@@ -1,0 +1,122 @@
+/* ==========================================
+   TRANG KHÁCH: Header & menu điều hướng
+   ========================================== */
+
+/* --- HEADER / NAVIGATION --- */
+.brand-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(250, 249, 246, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 1.2rem 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text-main);
+}
+
+.brand-logo span {
+    font-size: 0.8rem;
+    font-family: var(--font-sans);
+    display: block;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-top: -5px;
+    color: var(--color-text-muted);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: var(--transition-smooth);
+    color: var(--color-text-muted);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-text-main);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-text-main);
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.admin-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: var(--transition-smooth);
+}
+
+.admin-link:hover {
+    background-color: var(--color-text-main);
+    color: var(--color-surface);
+    border-color: var(--color-text-main);
+}
+
+.action-icon {
+    position: relative;
+    color: var(--color-text-main);
+    transition: var(--transition-smooth);
+}
+
+.action-icon:hover {
+    transform: scale(1.05);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background-color: var(--color-text-main);
+    color: var(--color-surface);
+    font-size: 0.65rem;
+    font-weight: 600;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

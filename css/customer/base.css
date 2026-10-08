@@ -1,0 +1,55 @@
+/* ==========================================
+   TRANG KHÁCH: Nền tảng: biến màu, reset
+   ========================================== */
+
+/* --- BRAND DESIGN SYSTEM & RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg: #FAF9F6;
+    /* Alabaster / Off-white */
+    --color-surface: #FFFFFF;
+    --color-text-main: #111111;
+    --color-text-muted: #666666;
+    --color-accent: #E8D3C9;
+    /* Soft Nude Pink */
+    --color-border: #E8E8E8;
+
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Outfit', sans-serif;
+
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: var(--font-sans);
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+input,
+select,
+textarea {
+    font-family: var(--font-sans);
+    outline: none;
+}

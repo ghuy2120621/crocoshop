@@ -1,0 +1,27 @@
+/* ==========================================
+   TRANG KHÁCH: Responsive (tablet)
+   ========================================== */
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 900px) {
+    .split-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .info-column {
+        position: static;
+    }
+
+    .brand-logo {
+        font-size: 1.8rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-banner {
+        height: 380px;
+    }
+}

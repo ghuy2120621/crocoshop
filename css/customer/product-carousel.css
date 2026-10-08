@@ -1,0 +1,167 @@
+/* ==========================================
+   TRANG KHÁCH: Sản phẩm trang chủ & slider
+   ========================================== */
+
+/* --- HOME PRODUCTS SECTION --- */
+.product-section {
+    max-width: 1400px;
+    margin: 0 auto 4rem;
+    padding: 0 4%;
+    transition: var(--transition-smooth);
+    animation: fadeInHero 1.2s ease-out;
+}
+
+/* --- HOME PRODUCTS CAROUSEL SLIDER --- */
+.category-slider-section {
+    max-width: 1200px !important;
+    margin: 40px auto !important;
+    padding: 0 20px !important;
+}
+
+.category-slider-section .category-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    margin-bottom: 2rem !important;
+    padding-bottom: 0.8rem !important;
+}
+
+.category-slider-section .category-title {
+    font-size: 22px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    margin-bottom: 15px !important;
+    color: var(--color-text-main) !important;
+    letter-spacing: 1px !important;
+}
+
+.category-slider-section .category-view-all {
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    color: var(--color-text-muted) !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid transparent !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.category-slider-section .category-view-all:hover {
+    color: var(--color-text-main) !important;
+    border-color: var(--color-text-main) !important;
+}
+
+.slider-container {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.product-slider {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    padding-bottom: 10px !important;
+    width: 100% !important;
+    scrollbar-width: none !important;
+    /* Hide scrollbar Firefox */
+}
+
+.product-slider::-webkit-scrollbar {
+    display: none !important;
+    /* Hide scrollbar Chrome/Safari */
+}
+
+/* THU NHỎ THẺ SẢN PHẨM - BẮT BUỘC CÓ DÒNG NÀY */
+.product-card {
+    flex: 0 0 260px !important;
+    /* Cố định chiều rộng mỗi sản phẩm là 260px */
+    width: 260px !important;
+    max-width: 260px !important;
+    border: 1px solid #eee !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    background-color: var(--color-surface) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: transform 0.2s ease !important;
+    cursor: pointer !important;
+}
+
+.product-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* CỐ ĐỊNH CHIỀU CAO KHUNG ẢNH (Hỗ trợ cả wrapper cũ và mới) */
+.product-img-wrapper,
+.image-container {
+    width: 100% !important;
+    height: 350px !important;
+    /* Chiều cao ảnh chuẩn mẫu */
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+.product-img,
+.product-card-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    /* Giúp ảnh không bị méo */
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease-in-out !important;
+}
+
+.product-card:hover .product-img,
+.product-card:hover .product-card-img {
+    transform: scale(1.06) !important;
+}
+
+.slide-btn {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #ddd !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    font-size: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.prev-btn {
+    left: -15px !important;
+}
+
+.next-btn {
+    right: -15px !important;
+}
+
+.slide-btn:hover {
+    background: #000 !important;
+    color: #fff !important;
+    border-color: #000 !important;
+}
+
+@media (max-width: 600px) {
+
+    .prev-btn,
+    .next-btn {
+        display: none !important;
+        /* Hide on mobile touch */
+    }
+}

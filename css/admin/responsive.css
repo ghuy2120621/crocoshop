@@ -1,0 +1,76 @@
+/* ==========================================
+   ADMIN: Responsive
+   ========================================== */
+
+/* ==========================================
+   RESPONSIVE DESIGN RULES
+   ========================================== */
+
+@media (max-width: 992px) {
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 0;
+        bottom: 0;
+        width: var(--sidebar-width);
+        transition: var(--transition-smooth);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .app-container.sidebar-open .sidebar {
+        left: 0;
+    }
+
+    .sidebar-collapsed .sidebar {
+        left: -260px;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .kpi-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-header {
+        padding: 0 1rem;
+    }
+
+    .content-body {
+        padding: 1rem;
+    }
+
+    .page-actions-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .filter-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

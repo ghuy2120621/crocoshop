@@ -1,0 +1,55 @@
+/* ==========================================
+   ADMIN: Thông báo nhanh
+   ========================================== */
+
+/* Toast Notification system */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 1000;
+}
+
+.toast {
+    background: rgba(18, 25, 41, 0.85);
+    backdrop-filter: var(--glass-blur);
+    border-left: 4px solid var(--color-purple);
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 300px;
+    transform: translateX(100px);
+    opacity: 0;
+    animation: slideInToast 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideInToast {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast.success {
+    border-left-color: var(--color-emerald);
+}
+
+.toast.error {
+    border-left-color: var(--color-red);
+}
+
+.toast.info {
+    border-left-color: var(--color-blue);
+}

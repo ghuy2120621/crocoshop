@@ -1,0 +1,113 @@
+/* ==========================================
+   TRANG KHÁCH: Nút & dropdown tài khoản
+   ========================================== */
+
+/* --- HEADER ACCOUNT BUTTON & DROPDOWN --- */
+.account-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.account-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-main);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.account-btn-content img {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--color-text-muted);
+}
+
+.account-text {
+    display: inline-block;
+}
+
+@media (max-width: 600px) {
+    .account-text {
+        display: none;
+        /* Hide text on mobile, keep icon */
+    }
+}
+
+.account-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition-smooth);
+    z-index: 150;
+    padding: 1rem 0;
+    margin-top: 0.5rem;
+}
+
+.account-menu-container:hover .account-dropdown,
+.account-dropdown:hover,
+.account-dropdown.mobile-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-header {
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.dropdown-username {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+}
+
+.dropdown-phone {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 0.8rem 0;
+}
+
+.dropdown-item {
+    width: 100%;
+    padding: 0.6rem 1.5rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-text-main);
+    transition: var(--transition-smooth);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #FAF9F6;
+    color: #cc0000;
+}

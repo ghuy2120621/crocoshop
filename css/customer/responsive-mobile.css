@@ -1,0 +1,80 @@
+/* ==========================================
+   TRANG KHÁCH: Responsive (mobile)
+   ========================================== */
+
+/* --- MOBILE RESPONSIVE STYLING --- */
+@media (max-width: 900px) {
+    .brand-header {
+        flex-wrap: wrap !important;
+        padding: 0.8rem 15px !important;
+        justify-content: space-between !important;
+        flex-direction: row !important;
+    }
+
+    .brand-logo {
+        font-size: 1.5rem !important;
+    }
+
+    .nav-actions {
+        gap: 15px !important;
+    }
+
+    .nav-menu {
+        display: flex !important;
+        order: 3 !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        margin-top: 10px !important;
+        padding: 10px 0 5px 0 !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.04) !important;
+        gap: 20px !important;
+        scrollbar-width: none !important;
+        justify-content: flex-start !important;
+    }
+
+    .nav-menu::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .nav-item-container {
+        flex: 0 0 auto !important;
+    }
+
+    .category-slider-section,
+    .products-grid-container {
+        display: block !important;
+        padding: 0 10px !important;
+    }
+
+    /* Sizing for product cards on mobile view */
+    .product-card {
+        flex: 0 0 170px !important;
+        width: 170px !important;
+        min-width: 170px !important;
+        max-width: 170px !important;
+    }
+
+    .product-img-wrapper,
+    .image-container {
+        height: 240px !important;
+    }
+
+    /* Hide scrolling arrows on touch devices */
+    .slide-btn {
+        display: none !important;
+    }
+
+    /* Scale down Zalo chat widget on mobile */
+    .zalo-cskh-btn {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 15px !important;
+        left: 15px !important;
+    }
+
+    .zalo-cskh-btn img {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}

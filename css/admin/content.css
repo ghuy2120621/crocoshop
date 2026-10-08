@@ -1,0 +1,98 @@
+/* ==========================================
+   ADMIN: Vùng nội dung, card, nút
+   ========================================== */
+
+/* ==========================================
+   CONTENT VIEWPORTS
+   ========================================== */
+
+.content-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    background: radial-gradient(circle at 80% 10%, rgba(139, 92, 246, 0.03), transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(217, 70, 239, 0.03), transparent 45%);
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Utility */
+.card {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
+    padding: 1.5rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--border-hover);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-purple), var(--color-pink));
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+}
+
+.btn-outline {
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-outline:hover,
+.btn-outline.active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-purple);
+    color: var(--text-primary);
+}
+
+.btn-text {
+    color: var(--color-purple);
+    font-weight: 500;
+    padding: 4px 8px;
+}
+
+.btn-text:hover {
+    text-decoration: underline;
+}

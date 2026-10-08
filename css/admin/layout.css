@@ -1,0 +1,20 @@
+/* ==========================================
+   ADMIN: Bố cục khung trang
+   ========================================== */
+
+/* ==========================================
+   LAYOUT STRUCTURE
+   ========================================== */
+
+.app-container {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.app-container.sidebar-collapsed {
+    grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+}

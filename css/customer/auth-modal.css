@@ -1,0 +1,141 @@
+/* ==========================================
+   TRANG KHÁCH: Modal đăng nhập / đăng ký
+   ========================================== */
+
+/* --- AUTH MODAL POPUP --- */
+.auth-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.auth-modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.auth-dialog {
+    background-color: var(--color-surface);
+    max-width: 440px;
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 2.5rem;
+    position: relative;
+}
+
+.auth-modal-backdrop.open .auth-dialog {
+    transform: translateY(0);
+}
+
+.social-auth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    border: 1px solid var(--color-border);
+    padding: 0.9rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-main);
+    transition: var(--transition-smooth);
+    width: 100%;
+    margin-bottom: 0.8rem;
+    border-radius: 2px;
+    cursor: pointer;
+    background: none;
+}
+
+.social-auth-btn:hover {
+    border-color: var(--color-text-main);
+    background-color: #FAF9F6;
+    transform: translateY(-1px);
+}
+
+.social-auth-btn svg {
+    flex-shrink: 0;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 1.8rem 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.auth-divider:not(:empty)::before {
+    margin-right: .75rem;
+}
+
+.auth-divider:not(:empty)::after {
+    margin-left: .75rem;
+}
+
+.auth-step {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.auth-step.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.otp-countdown-text {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.otp-countdown-text span {
+    color: var(--color-text-main);
+    font-weight: 700;
+}
+
+.resend-btn {
+    font-size: 0.72rem;
+    text-decoration: underline;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    display: none;
+    text-align: center;
+    width: 100%;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.resend-btn.active {
+    display: block;
+    color: var(--color-text-main);
+}
